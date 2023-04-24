@@ -1,0 +1,29 @@
+extends ../layout/admin
+
+block contenido
+    h2(class="text-2xl font-extrabold text-center my-10")= pagina
+
+    a(href="/mis-propiedades" class="group relative inline-block focus:outline-none focus:ring my-6 w-full sm:w-auto rounded-md") 
+            span(class="absolute inset-0 translate-x-1.5 translate-y-1.5 bg-amber-600 transition-transform group-hover:translate-y-0 group-hover:translate-x-0 rounded-md")
+            span(class="relative inline-block border-2 border-current px-8 py-3 text-sm font-bold uppercase tracking-widest text-black group-active:text-opacity-75 text-center w-full sm:w-auto rounded-md") Volver
+
+    div(class="mx-auto max-w-4xl bg-white shadow")
+
+        if mensajes.length
+            ul
+                each mensaje in mensajes
+                    li(class="border-gray-200 border-b p-5")
+                        p(class="font-bold text-gray-800") Nombre: 
+                            span(class="font-normal")= mensaje.usuario.nombre
+
+                        p(class="font-bold text-gray-800") Email: 
+                            span(class="font-normal")= mensaje.usuario.email
+
+                        p(class="font-bold text-gray-800") Mensaje: 
+                            span(class="font-normal")= mensaje.mensaje
+
+                        p(class="font-bold text-gray-800") Enviado: 
+                            span(class="font-normal")= formatearFecha( mensaje.createdAt ) 
+
+        else 
+            p(class="text-center text-gray-600 p-5 rounded-md") No Hay Mensajes
